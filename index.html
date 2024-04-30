@@ -171,9 +171,11 @@
               <button id="draw-down-btn" class="down-btn">▼</button>
             </div>
 
-            <div class="">
-              <button id="reset-btn" class="reset-btn">Reset</button>
-            </div>
+            <button id="reset-btn" class="reset-btn">Reset</button>
+
+            <p id="error" class="error">
+              You can't go over 99. Please reset the score.
+            </p>
           </div>
 
           <!-- role -->
@@ -316,10 +318,6 @@
           </div>
         </div>
       </div>
-      <!-- error -->
-      <p id="error" class="error">
-        You can't go over 99. Please reset the score.
-      </p>
     </div>
   </body>
 
@@ -328,6 +326,9 @@
     let win = 0;
     let lose = 0;
     let draw = 0;
+
+    // 最大値
+    const max = 30;
 
     const winScore = document.getElementById("win-score");
     const loseScore = document.getElementById("lose-score");
@@ -347,9 +348,11 @@
 
     // 数値を加算、減算するボタン
     winUpBtn.addEventListener("click", () => {
-      win++;
-      winScore.innerText = win;
-      currentWinScore.innerText = win;
+      if (win < max) {
+        win++;
+        winScore.innerText = win;
+        currentWinScore.innerText = win;
+      }
     });
 
     winDownBtn.addEventListener("click", () => {
@@ -398,6 +401,9 @@
       winScore.innerText = win;
       loseScore.innerText = lose;
       drawScore.innerText = draw;
+      currentWinScore.innerText = win;
+      currentLoseScore.innerText = lose;
+      currentDrawScore.innerText = draw;
     });
 
     // role btns
@@ -562,11 +568,18 @@
     // error message
     // winまたはlose、drawが99になったらエラーメッセージを表示
     const error = document.getElementById("error");
-    const max = 99;
-    if (win === max || lose === max || draw === max) {
-      error.style.display = "block";
-    } else {
-      error.style.display = "none";
+
+    // 初期値は非表示
+    error.style.display = "none";
+
+    function checkError() {
+      if (win === max || lose === max || draw === max) {
+        error.style.display = "block";
+      } else {
+        error.style.display = "none";
+      }
     }
+
+    winScore.addEventListener("DOMSubtreeModified", checkError);
   </script>
 </html>

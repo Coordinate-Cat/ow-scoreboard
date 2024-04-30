@@ -11,3 +11,11 @@ JA: ゲームオーバーウォッチの現在のスコアを表示するため�
 ## How to install ?
 
 writing...
+
+## Powered by
+
+[Tauri](https://tauri.app/)
+
+## License
+
+MIT License
