@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/src/main.ts" defer></script>
+    <style>
+      html {
+        font-family: "Overwatch";
+      }
+
+      /* アニメーション */
+      .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+
+      .animate__bounce {
+        animation-name: animate__bounce;
+      }
+
+      @keyframes animate__bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="viewer-container">
+      <div class="chromakey-area">
+        <div class="triangle-left"></div>
+        <!-- score -->
+        <div class="score-container">
+          <div class="score-title">Score</div>
+          <div class="score">
+            <p id="win-score">0</p>
+            <p>-</p>
+            <p id="lose-score">0</p>
+            <p>-</p>
+            <p id="draw-score">0</p>
+          </div>
+        </div>
+
+        <!-- role -->
+        <div class="role-container">
+          <div class="role-title">Role</div>
+          <div class="role">
+            <img
+              id="tank"
+              src="./src/assets/role/tank.svg"
+              alt="Tank"
+              height="60"
+            />
+            <img
+              id="damage"
+              src="./src/assets/role/damage.svg"
+              alt="Damage"
+              height="60"
+            />
+            <img
+              id="support"
+              src="./src/assets/role/support.svg"
+              alt="Support"
+              height="60"
+            />
+          </div>
+        </div>
+
+        <!-- rate -->
+        <div class="rate-container">
+          <div class="rate-title">Rate</div>
+          <div class="rate">
+            <img src="./src/assets/rate/Bronze.png" alt="Bronze" height="60" />
+            <img src="./src/assets/rate/Silver.png" alt="Silver" height="60" />
+            <img src="./src/assets/rate/Gold.png" alt="Gold" height="60" />
+            <img
+              src="./src/assets/rate/Platinum.png"
+              alt="Platinum"
+              height="60"
+            />
+            <img
+              src="./src/assets/rate/Diamond.png"
+              alt="Diamond"
+              height="60"
+            />
+            <img src="./src/assets/rate/Masters.png" alt="Master" height="60" />
+            <img
+              src="./src/assets/rate/Grandmaster.png"
+              alt="Grandmaster"
+              height="60"
+            />
+            <img
+              src="./src/assets/rate/Champion.png"
+              alt="Champion"
+              height="60"
+            />
+            <img src="./src/assets/rate/Top500.png" alt="Top500" height="60" />
+            <p>1</p>
+          </div>
+        </div>
+
+        <div class="triangle-right"></div>
+      </div>
+    </div>
+
+    <!-- control score -->
+    <div class="control-container">
+      <div class="control">
+        <div class="control-title">Control Panel</div>
+        <div class="control-btns">
+          <!-- score -->
+          <div class="control-score">
+            <button id="win-btn" class="btn">Win</button>
+            <button id="lose-btn" class="btn">Lose</button>
+            <button id="draw-btn" class="btn">Draw</button>
+            <button id="reset-btn" class="reset-btn">Reset</button>
+          </div>
+
+          <!-- radioボタンで再構築 -->
+          <div class="control-role">
+            <input
+              type="radio"
+              id="tank-btn"
+              name="role"
+              value="tank"
+              class="role-btn"
+            />
+            <label for="tank-btn" class="">Tank</label>
+            <input
+              type="radio"
+              id="damage-btn"
+              name="role"
+              value="damage"
+              class="role-btn"
+              checked
+            />
+            <label for="damage-btn" class="">Damage</label>
+            <input
+              type="radio"
+              id="support-btn"
+              name="role"
+              value="support"
+              class="role-btn"
+            />
+            <label for="support-btn" class="">Support</label>
+          </div>
+        </div>
+      </div>
+      <!-- error -->
+      <p id="error" class="error">
+        You can't go over 99. Please reset the score.
+      </p>
+    </div>
+  </body>
+  <script>
+    // buttons
+    const winBtn = document.getElementById("win-btn");
+    const loseBtn = document.getElementById("lose-btn");
+    const drawBtn = document.getElementById("draw-btn");
+    const resetBtn = document.getElementById("reset-btn");
+
+    // score
+    const winScore = document.getElementById("win-score");
+    const loseScore = document.getElementById("lose-score");
+    const drawScore = document.getElementById("draw-score");
+
+    // score values
+    let win = 0;
+    let lose = 0;
+    let draw = 0;
+
+    // max score
+    const max = 99;
+
+    // win button
+    winBtn.addEventListener("click", () => {
+      if (win < max) {
+        win++;
+        winScore.innerText = win;
+      }
+    });
+
+    // lose button
+    loseBtn.addEventListener("click", () => {
+      if (lose < max) {
+        lose++;
+        loseScore.innerText = lose;
+      } else {
+        error.style.display = "block";
+      }
+    });
+
+    // draw button
+    drawBtn.addEventListener("click", () => {
+      if (draw < max) {
+        draw++;
+        drawScore.innerText = draw;
+      } else {
+        error.style.display = "block";
+      }
+    });
+
+    // reset button
+    resetBtn.addEventListener("click", () => {
+      win = 0;
+      lose = 0;
+      draw = 0;
+      winScore.innerText = win;
+      loseScore.innerText = lose;
+      drawScore.innerText = draw;
+    });
+
+    // role btns
+    const tankBtn = document.getElementById("tank-btn");
+    const damageBtn = document.getElementById("damage-btn");
+    const supportBtn = document.getElementById("support-btn");
+
+    // role images
+    const tank = document.getElementById("tank");
+    const damage = document.getElementById("damage");
+    const support = document.getElementById("support");
+
+    // 起動時三つも表示されているので、checkedがついているdamageのみ表示
+    tank.style.display = "none";
+    support.style.display = "none";
+
+    // role radio btns
+    tankBtn.addEventListener("click", () => {
+      tank.style.display = "block";
+      damage.style.display = "none";
+      support.style.display = "none";
+    });
+
+    damageBtn.addEventListener("click", () => {
+      tank.style.display = "none";
+      damage.style.display = "block";
+      support.style.display = "none";
+    });
+
+    supportBtn.addEventListener("click", () => {
+      tank.style.display = "none";
+      damage.style.display = "none";
+      support.style.display = "block";
+    });
+
+    // 値が変更されたら、アニメーションを追加
+    winScore.addEventListener("DOMSubtreeModified", () => {
+      winScore.classList.add("animate__animated", "animate__bounce");
+      setTimeout(() => {
+        winScore.classList.remove("animate__animated", "animate__bounce");
+      }, 1000);
+    });
+
+    loseScore.addEventListener("DOMSubtreeModified", () => {
+      loseScore.classList.add("animate__animated", "animate__bounce");
+      setTimeout(() => {
+        loseScore.classList.remove("animate__animated", "animate__bounce");
+      }, 1000);
+    });
+
+    drawScore.addEventListener("DOMSubtreeModified", () => {
+      drawScore.classList.add("animate__animated", "animate__bounce");
+      setTimeout(() => {
+        drawScore.classList.remove("animate__animated", "animate__bounce");
+      }, 1000);
+    });
+
+    // error message
+    // winまたはlose、drawが99になったらエラーメッセージを表示
+    if (win === max || lose === max || draw === max) {
+      error.style.display = "block";
+    } else {
+      error.style.display = "none";
+    }
+  </script>
+</html>
