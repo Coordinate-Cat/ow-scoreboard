@@ -1,7 +1,13 @@
-# Tauri + Vanilla TS
+# ow-scoreboard
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+![GitHub](src/assets/app.png)
 
-## Recommended IDE Setup
+## What is it ?
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+EN: OBS Studio app to display the current score of Overwatch game.
+
+JA: ゲームオーバーウォッチの現在のスコアを表示するための OBS Studio 用アプリです。
+
+## How to install ?
+
+writing...

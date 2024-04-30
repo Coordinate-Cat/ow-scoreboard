@@ -7,11 +7,7 @@
     <title>Tauri App</title>
     <script type="module" src="/src/main.ts" defer></script>
     <style>
-      html {
-        font-family: "Overwatch";
-      }
-
-      /* アニメーション */
+      /* バウンドアニメーション */
       .animate__animated {
         animation-duration: 1s;
         animation-fill-mode: both;
@@ -40,7 +36,7 @@
   </head>
 
   <body>
-    <div class="viewer-container">
+    <div id="viewer" class="viewer-container">
       <div class="chromakey-area">
         <div class="triangle-left"></div>
         <!-- score -->
@@ -84,32 +80,61 @@
         <div class="rate-container">
           <div class="rate-title">Rate</div>
           <div class="rate">
-            <img src="./src/assets/rate/Bronze.png" alt="Bronze" height="60" />
-            <img src="./src/assets/rate/Silver.png" alt="Silver" height="60" />
-            <img src="./src/assets/rate/Gold.png" alt="Gold" height="60" />
             <img
+              id="bronze"
+              src="./src/assets/rate/Bronze.png"
+              alt="Bronze"
+              height="60"
+            />
+            <img
+              id="silver"
+              src="./src/assets/rate/Silver.png"
+              alt="Silver"
+              height="60"
+            />
+            <img
+              id="gold"
+              src="./src/assets/rate/Gold.png"
+              alt="Gold"
+              height="60"
+            />
+            <img
+              id="platinum"
               src="./src/assets/rate/Platinum.png"
               alt="Platinum"
               height="60"
             />
             <img
+              id="diamond"
               src="./src/assets/rate/Diamond.png"
               alt="Diamond"
               height="60"
             />
-            <img src="./src/assets/rate/Masters.png" alt="Master" height="60" />
             <img
+              id="masters"
+              src="./src/assets/rate/Masters.png"
+              alt="Masters"
+              height="60"
+            />
+            <img
+              id="grandmaster"
               src="./src/assets/rate/Grandmaster.png"
               alt="Grandmaster"
               height="60"
             />
             <img
+              id="champion"
               src="./src/assets/rate/Champion.png"
               alt="Champion"
               height="60"
             />
-            <img src="./src/assets/rate/Top500.png" alt="Top500" height="60" />
-            <p>1</p>
+            <img
+              id="top500"
+              src="./src/assets/rate/Top500.png"
+              alt="Top500"
+              height="60"
+            />
+            <p id="tier" class="tier">5</p>
           </div>
         </div>
 
@@ -123,40 +148,171 @@
         <div class="control-title">Control Panel</div>
         <div class="control-btns">
           <!-- score -->
+          <h2>SCORE</h2>
           <div class="control-score">
-            <button id="win-btn" class="btn">Win</button>
-            <button id="lose-btn" class="btn">Lose</button>
-            <button id="draw-btn" class="btn">Draw</button>
-            <button id="reset-btn" class="reset-btn">Reset</button>
+            <div class="control-score-btn">
+              <p>Win:</p>
+              <p id="current-win-score" class="current-score">0</p>
+              <button id="win-up-btn" class="up-btn">▲</button>
+              <button id="win-down-btn" class="down-btn">▼</button>
+            </div>
+
+            <div class="control-score-btn">
+              <p>Lose:</p>
+              <p id="current-lose-score" class="current-score">0</p>
+              <button id="lose-up-btn" class="up-btn">▲</button>
+              <button id="lose-down-btn" class="down-btn">▼</button>
+            </div>
+
+            <div class="control-score-btn">
+              <p>Draw:</p>
+              <p id="current-draw-score" class="current-score">0</p>
+              <button id="draw-up-btn" class="up-btn">▲</button>
+              <button id="draw-down-btn" class="down-btn">▼</button>
+            </div>
+
+            <div class="">
+              <button id="reset-btn" class="reset-btn">Reset</button>
+            </div>
           </div>
 
-          <!-- radioボタンで再構築 -->
+          <!-- role -->
+          <h2>ROLE</h2>
           <div class="control-role">
-            <input
-              type="radio"
-              id="tank-btn"
-              name="role"
-              value="tank"
-              class="role-btn"
-            />
-            <label for="tank-btn" class="">Tank</label>
-            <input
-              type="radio"
-              id="damage-btn"
-              name="role"
-              value="damage"
-              class="role-btn"
-              checked
-            />
-            <label for="damage-btn" class="">Damage</label>
-            <input
-              type="radio"
-              id="support-btn"
-              name="role"
-              value="support"
-              class="role-btn"
-            />
-            <label for="support-btn" class="">Support</label>
+            <div>
+              <input
+                type="radio"
+                id="tank-btn"
+                name="role"
+                value="tank"
+                class="role-btn"
+              />
+              <label for="tank-btn" class="">Tank</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="damage-btn"
+                name="role"
+                value="damage"
+                class="role-btn"
+                checked
+              />
+              <label for="damage-btn" class="">Damage</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="support-btn"
+                name="role"
+                value="support"
+                class="role-btn"
+              />
+              <label for="support-btn" class="">Support</label>
+            </div>
+          </div>
+
+          <!-- rate -->
+          <h2>RATE</h2>
+          <div class="control-rate">
+            <div>
+              <input
+                type="radio"
+                id="bronze-btn"
+                name="rate"
+                value="bronze"
+                class="rate-btn"
+                checked
+              />
+              <label for="bronze-btn" class="">Bronze</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="silver-btn"
+                name="rate"
+                value="silver"
+                class="rate-btn"
+              />
+              <label for="silver-btn" class="">Silver</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="gold-btn"
+                name="rate"
+                value="gold"
+                class="rate-btn"
+              />
+              <label for="gold-btn" class="">Gold</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="platinum-btn"
+                name="rate"
+                value="platinum"
+                class="rate-btn"
+              />
+              <label for="platinum-btn" class="">Platinum</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="diamond-btn"
+                name="rate"
+                value="diamond"
+                class="rate-btn"
+              />
+              <label for="diamond-btn" class="">Diamond</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="masters-btn"
+                name="rate"
+                value="masters"
+                class="rate-btn"
+              />
+              <label for="masters-btn" class="">Masters</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="grandmaster-btn"
+                name="rate"
+                value="grandmaster"
+                class="rate-btn"
+              />
+              <label for="grandmaster-btn" class="">Grandmaster</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="champion-btn"
+                name="rate"
+                value="champion"
+                class="rate-btn"
+              />
+              <label for="champion-btn" class="">Champion</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="top500-btn"
+                name="rate"
+                value="top500"
+                class="rate-btn"
+              />
+              <label for="top500-btn" class="">Top500</label>
+            </div>
+          </div>
+
+          <div class="control-tier">
+            <p>Tier:</p>
+            <p id="current-tier" class="tier">5</p>
+            <button id="up-btn" class="control-tier-btn up-btn">▲</button>
+            <button id="down-btn" class="control-tier-btn down-btn">▼</button>
           </div>
         </div>
       </div>
@@ -166,55 +322,75 @@
       </p>
     </div>
   </body>
+
   <script>
-    // buttons
-    const winBtn = document.getElementById("win-btn");
-    const loseBtn = document.getElementById("lose-btn");
-    const drawBtn = document.getElementById("draw-btn");
-    const resetBtn = document.getElementById("reset-btn");
-
     // score
-    const winScore = document.getElementById("win-score");
-    const loseScore = document.getElementById("lose-score");
-    const drawScore = document.getElementById("draw-score");
-
-    // score values
     let win = 0;
     let lose = 0;
     let draw = 0;
 
-    // max score
-    const max = 99;
+    const winScore = document.getElementById("win-score");
+    const loseScore = document.getElementById("lose-score");
+    const drawScore = document.getElementById("draw-score");
 
-    // win button
-    winBtn.addEventListener("click", () => {
-      if (win < max) {
-        win++;
+    const currentWinScore = document.getElementById("current-win-score");
+    const currentLoseScore = document.getElementById("current-lose-score");
+    const currentDrawScore = document.getElementById("current-draw-score");
+
+    // score btns
+    const winUpBtn = document.getElementById("win-up-btn");
+    const winDownBtn = document.getElementById("win-down-btn");
+    const loseUpBtn = document.getElementById("lose-up-btn");
+    const loseDownBtn = document.getElementById("lose-down-btn");
+    const drawUpBtn = document.getElementById("draw-up-btn");
+    const drawDownBtn = document.getElementById("draw-down-btn");
+
+    // 数値を加算、減算するボタン
+    winUpBtn.addEventListener("click", () => {
+      win++;
+      winScore.innerText = win;
+      currentWinScore.innerText = win;
+    });
+
+    winDownBtn.addEventListener("click", () => {
+      if (win > 0) {
+        win--;
         winScore.innerText = win;
+        currentWinScore.innerText = win;
       }
     });
 
-    // lose button
-    loseBtn.addEventListener("click", () => {
-      if (lose < max) {
-        lose++;
+    loseUpBtn.addEventListener("click", () => {
+      lose++;
+      loseScore.innerText = lose;
+      currentLoseScore.innerText = lose;
+    });
+
+    loseDownBtn.addEventListener("click", () => {
+      if (lose > 0) {
+        lose--;
         loseScore.innerText = lose;
-      } else {
-        error.style.display = "block";
+        currentLoseScore.innerText = lose;
       }
     });
 
-    // draw button
-    drawBtn.addEventListener("click", () => {
-      if (draw < max) {
-        draw++;
+    drawUpBtn.addEventListener("click", () => {
+      draw++;
+      drawScore.innerText = draw;
+      currentDrawScore.innerText = draw;
+    });
+
+    drawDownBtn.addEventListener("click", () => {
+      if (draw > 0) {
+        draw--;
         drawScore.innerText = draw;
-      } else {
-        error.style.display = "block";
+        currentDrawScore.innerText = draw;
       }
     });
 
-    // reset button
+    // reset btn
+    const resetBtn = document.getElementById("reset-btn");
+
     resetBtn.addEventListener("click", () => {
       win = 0;
       lose = 0;
@@ -257,30 +433,136 @@
       support.style.display = "block";
     });
 
-    // 値が変更されたら、アニメーションを追加
-    winScore.addEventListener("DOMSubtreeModified", () => {
-      winScore.classList.add("animate__animated", "animate__bounce");
-      setTimeout(() => {
-        winScore.classList.remove("animate__animated", "animate__bounce");
-      }, 1000);
+    // rate btns
+    const bronzeBtn = document.getElementById("bronze-btn");
+    const silverBtn = document.getElementById("silver-btn");
+    const goldBtn = document.getElementById("gold-btn");
+    const platinumBtn = document.getElementById("platinum-btn");
+    const diamondBtn = document.getElementById("diamond-btn");
+    const mastersBtn = document.getElementById("masters-btn");
+    const grandmasterBtn = document.getElementById("grandmaster-btn");
+    const championBtn = document.getElementById("champion-btn");
+    const top500Btn = document.getElementById("top500-btn");
+
+    // rate images
+    const bronze = document.getElementById("bronze");
+    const silver = document.getElementById("silver");
+    const gold = document.getElementById("gold");
+    const platinum = document.getElementById("platinum");
+    const diamond = document.getElementById("diamond");
+    const masters = document.getElementById("masters");
+    const grandmaster = document.getElementById("grandmaster");
+    const champion = document.getElementById("champion");
+    const top500 = document.getElementById("top500");
+
+    // 起動時Bronzeが表示されているので、checkedがついているbronzeのみ表示
+    silver.style.display = "none";
+    gold.style.display = "none";
+    platinum.style.display = "none";
+    diamond.style.display = "none";
+    masters.style.display = "none";
+    grandmaster.style.display = "none";
+    champion.style.display = "none";
+    top500.style.display = "none";
+
+    // rateを変更すると、それに応じたrateの画像を表示
+    function handleRateButtonClick(rate, rateElement) {
+      const rates = [
+        "bronze",
+        "silver",
+        "gold",
+        "platinum",
+        "diamond",
+        "masters",
+        "grandmaster",
+        "champion",
+        "top500",
+      ];
+      rates.forEach((r) => {
+        const element = document.getElementById(r);
+        if (r === rate) {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      });
+    }
+
+    bronzeBtn.addEventListener("click", () => {
+      handleRateButtonClick("bronze", bronze);
     });
 
-    loseScore.addEventListener("DOMSubtreeModified", () => {
-      loseScore.classList.add("animate__animated", "animate__bounce");
-      setTimeout(() => {
-        loseScore.classList.remove("animate__animated", "animate__bounce");
-      }, 1000);
+    silverBtn.addEventListener("click", () => {
+      handleRateButtonClick("silver", silver);
     });
 
-    drawScore.addEventListener("DOMSubtreeModified", () => {
-      drawScore.classList.add("animate__animated", "animate__bounce");
-      setTimeout(() => {
-        drawScore.classList.remove("animate__animated", "animate__bounce");
-      }, 1000);
+    goldBtn.addEventListener("click", () => {
+      handleRateButtonClick("gold", gold);
     });
+
+    platinumBtn.addEventListener("click", () => {
+      handleRateButtonClick("platinum", platinum);
+    });
+
+    diamondBtn.addEventListener("click", () => {
+      handleRateButtonClick("diamond", diamond);
+    });
+
+    mastersBtn.addEventListener("click", () => {
+      handleRateButtonClick("masters", masters);
+    });
+
+    grandmasterBtn.addEventListener("click", () => {
+      handleRateButtonClick("grandmaster", grandmaster);
+    });
+
+    championBtn.addEventListener("click", () => {
+      handleRateButtonClick("champion", champion);
+    });
+
+    top500Btn.addEventListener("click", () => {
+      handleRateButtonClick("top500", top500);
+    });
+
+    // rateのtier変更
+    const tier = document.getElementById("tier");
+    const currentTier = document.getElementById("current-tier");
+    const upBtn = document.getElementById("up-btn");
+    const downBtn = document.getElementById("down-btn");
+
+    // 一番上が1で、一番下が5なので、逆にする
+    upBtn.addEventListener("click", () => {
+      if (parseInt(tier.innerText) > 1) {
+        tier.innerText = parseInt(tier.innerText) - 1;
+        currentTier.innerText = parseInt(currentTier.innerText) - 1;
+      }
+    });
+
+    downBtn.addEventListener("click", () => {
+      if (parseInt(tier.innerText) < 5) {
+        tier.innerText = parseInt(tier.innerText) + 1;
+        currentTier.innerText = parseInt(currentTier.innerText) + 1;
+      }
+    });
+
+    // アニメーション
+    function addAnimation(target) {
+      target.addEventListener("DOMSubtreeModified", () => {
+        target.classList.add("animate__animated", "animate__bounce");
+        setTimeout(() => {
+          target.classList.remove("animate__animated", "animate__bounce");
+        }, 1000);
+      });
+    }
+
+    addAnimation(winScore);
+    addAnimation(loseScore);
+    addAnimation(drawScore);
 
     // error message
     // winまたはlose、drawが99になったらエラーメッセージを表示
+    const error = document.getElementById("error");
+    const max = 99;
     if (win === max || lose === max || draw === max) {
       error.style.display = "block";
     } else {
