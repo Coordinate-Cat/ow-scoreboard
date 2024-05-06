@@ -33,7 +33,7 @@
       {
         "title": "ow-scoreboard",
         "width": 1000,
-        "height": 500,
+        "height": 600,
         "resizable": false,
         "fullscreen": false,
         "transparent": true

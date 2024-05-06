@@ -37,7 +37,7 @@
   <body>
     <div id="viewer" class="viewer-container">
       <div class="chromakey-area">
-        <div class="triangle-left"></div>
+        <div id="wing-left" class="wing-left"></div>
         <!-- score -->
         <div class="score-container">
           <div class="score-title">Score</div>
@@ -137,7 +137,7 @@
           </div>
         </div>
 
-        <div class="triangle-right"></div>
+        <div id="wing-right" class="wing-right"></div>
       </div>
     </div>
 
@@ -152,22 +152,22 @@
             <div class="control-score-btn">
               <p>Win:</p>
               <p id="current-win-score" class="current-score">0</p>
-              <button id="win-up-btn" class="up-btn">▲</button>
-              <button id="win-down-btn" class="down-btn">▼</button>
+              <button id="win-up-btn" class="green-btn">▲</button>
+              <button id="win-down-btn" class="red-btn">▼</button>
             </div>
 
             <div class="control-score-btn">
               <p>Lose:</p>
               <p id="current-lose-score" class="current-score">0</p>
-              <button id="lose-up-btn" class="up-btn">▲</button>
-              <button id="lose-down-btn" class="down-btn">▼</button>
+              <button id="lose-up-btn" class="green-btn">▲</button>
+              <button id="lose-down-btn" class="red-btn">▼</button>
             </div>
 
             <div class="control-score-btn">
               <p>Draw:</p>
               <p id="current-draw-score" class="current-score">0</p>
-              <button id="draw-up-btn" class="up-btn">▲</button>
-              <button id="draw-down-btn" class="down-btn">▼</button>
+              <button id="draw-up-btn" class="green-btn">▲</button>
+              <button id="draw-down-btn" class="red-btn">▼</button>
             </div>
 
             <button id="reset-btn" class="reset-btn">Reset</button>
@@ -216,104 +216,112 @@
           <!-- rate -->
           <h2>RATE</h2>
           <div class="control-rate">
-            <div>
-              <input
-                type="radio"
-                id="bronze-btn"
-                name="rate"
-                value="bronze"
-                class="rate-btn"
-                checked
-              />
-              <label for="bronze-btn" class="">Bronze</label>
+            <div class="control-rate-container">
+              <div>
+                <input
+                  type="radio"
+                  id="bronze-btn"
+                  name="rate"
+                  value="bronze"
+                  class="rate-btn"
+                  checked
+                />
+                <label for="bronze-btn" class="">Bronze</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="silver-btn"
+                  name="rate"
+                  value="silver"
+                  class="rate-btn"
+                />
+                <label for="silver-btn" class="">Silver</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="gold-btn"
+                  name="rate"
+                  value="gold"
+                  class="rate-btn"
+                />
+                <label for="gold-btn" class="">Gold</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="platinum-btn"
+                  name="rate"
+                  value="platinum"
+                  class="rate-btn"
+                />
+                <label for="platinum-btn" class="">Platinum</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="diamond-btn"
+                  name="rate"
+                  value="diamond"
+                  class="rate-btn"
+                />
+                <label for="diamond-btn" class="">Diamond</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="masters-btn"
+                  name="rate"
+                  value="masters"
+                  class="rate-btn"
+                />
+                <label for="masters-btn" class="">Masters</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="grandmaster-btn"
+                  name="rate"
+                  value="grandmaster"
+                  class="rate-btn"
+                />
+                <label for="grandmaster-btn" class="">Grandmaster</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="champion-btn"
+                  name="rate"
+                  value="champion"
+                  class="rate-btn"
+                />
+                <label for="champion-btn" class="">Champion</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="top500-btn"
+                  name="rate"
+                  value="top500"
+                  class="rate-btn"
+                />
+                <label for="top500-btn" class="">Top500</label>
+              </div>
             </div>
-            <div>
-              <input
-                type="radio"
-                id="silver-btn"
-                name="rate"
-                value="silver"
-                class="rate-btn"
-              />
-              <label for="silver-btn" class="">Silver</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="gold-btn"
-                name="rate"
-                value="gold"
-                class="rate-btn"
-              />
-              <label for="gold-btn" class="">Gold</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="platinum-btn"
-                name="rate"
-                value="platinum"
-                class="rate-btn"
-              />
-              <label for="platinum-btn" class="">Platinum</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="diamond-btn"
-                name="rate"
-                value="diamond"
-                class="rate-btn"
-              />
-              <label for="diamond-btn" class="">Diamond</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="masters-btn"
-                name="rate"
-                value="masters"
-                class="rate-btn"
-              />
-              <label for="masters-btn" class="">Masters</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="grandmaster-btn"
-                name="rate"
-                value="grandmaster"
-                class="rate-btn"
-              />
-              <label for="grandmaster-btn" class="">Grandmaster</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="champion-btn"
-                name="rate"
-                value="champion"
-                class="rate-btn"
-              />
-              <label for="champion-btn" class="">Champion</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="top500-btn"
-                name="rate"
-                value="top500"
-                class="rate-btn"
-              />
-              <label for="top500-btn" class="">Top500</label>
+            <div id="control-tier" class="control-tier">
+              <p id="current-tier-text">Tier:</p>
+              <p id="current-tier" class="tier">5</p>
+              <button id="up-btn" class="control-tier-btn green-btn">▲</button>
+              <button id="down-btn" class="control-tier-btn red-btn">▼</button>
             </div>
           </div>
 
-          <div class="control-tier">
-            <p>Tier:</p>
-            <p id="current-tier" class="tier">5</p>
-            <button id="up-btn" class="control-tier-btn up-btn">▲</button>
-            <button id="down-btn" class="control-tier-btn down-btn">▼</button>
+          <!-- wing -->
+          <h2>WING</h2>
+          <div class="control-wing">
+            <button class="green-btn">on</button>
+            <button class="red-btn">off</button>
           </div>
         </div>
       </div>
@@ -563,6 +571,59 @@
     addAnimation(winScore);
     addAnimation(loseScore);
     addAnimation(drawScore);
+
+    // wingを表示非表示を切り替える
+    const wingLeft = document.getElementById("wing-left");
+    const wingRight = document.getElementById("wing-right");
+
+    const wingBtns = document.querySelectorAll(".control-wing button");
+
+    // btnの色初期値
+    wingBtns[0].style.backgroundColor = "#02a202";
+    wingBtns[1].style.backgroundColor = "gray";
+
+    wingBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.innerText === "on") {
+          wingLeft.style.display = "block";
+          wingRight.style.display = "block";
+          // offボタンの色を変える
+          wingBtns[0].style.backgroundColor = "#02a202";
+          wingBtns[1].style.backgroundColor = "gray";
+        } else {
+          wingLeft.style.display = "none";
+          wingRight.style.display = "none";
+          // onボタンの色を変える
+          wingBtns[0].style.backgroundColor = "gray";
+          wingBtns[1].style.backgroundColor = "#dd0051";
+        }
+      });
+    });
+
+    // top500だったらid:control-tierを非表示にする
+    const controlTier = document.getElementById("control-tier");
+
+    function checkTop500() {
+      if (top500Btn.checked) {
+        controlTier.style.display = "none";
+        tier.style.display = "none";
+      } else {
+        controlTier.style.display = "flex";
+        tier.style.display = "flex";
+      }
+    }
+
+    top500Btn.addEventListener("click", checkTop500);
+
+    // 他のを選択した時には表示される
+    bronzeBtn.addEventListener("click", checkTop500);
+    silverBtn.addEventListener("click", checkTop500);
+    goldBtn.addEventListener("click", checkTop500);
+    platinumBtn.addEventListener("click", checkTop500);
+    diamondBtn.addEventListener("click", checkTop500);
+    mastersBtn.addEventListener("click", checkTop500);
+    grandmasterBtn.addEventListener("click", checkTop500);
+    championBtn.addEventListener("click", checkTop500);
 
     // error message
     // winまたはlose、drawが99になったらエラーメッセージを表示

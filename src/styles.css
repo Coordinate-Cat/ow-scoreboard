@@ -115,14 +115,14 @@ input[type="radio"] {
   justify-content: center;
 }
 
-.triangle-left {
+.wing-left {
   height: 92px;
   width: 18px;
   clip-path: polygon(100% 0, 100% 100%, 20% 100%);
   background-color: #ffffff;
 }
 
-.triangle-right {
+.wing-right {
   height: 92px;
   width: 18px;
   clip-path: polygon(0 0, 80% 0, 0 100%);
@@ -228,9 +228,10 @@ input[type="radio"] {
 /* ----- control ----- */
 .control-container {
   width: 100%;
-  height: 280px;
+  height: fit-content;
   margin: 0;
   padding: 20px;
+  padding-bottom: 100px;
   display: flex;
   background-color: #ffffff;
 }
@@ -306,7 +307,13 @@ input[type="radio"] {
   width: fit-content;
   display: flex;
   background-color: #ffffff;
+  flex-direction: column;
   margin: 8px 0;
+}
+
+.control-rate-container {
+  display: flex;
+  gap: 8px;
 }
 
 .control-tier {
@@ -319,6 +326,13 @@ input[type="radio"] {
   gap: 4px;
   align-items: center;
   justify-content: center;
+}
+
+.control-tier > button {
+  width: 20px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .tier {
@@ -345,11 +359,21 @@ input[type="radio"] {
   background-color: #ffffff;
 }
 
-.up-btn {
+.green-btn {
+  cursor: pointer;
   background-color: #02a202;
+  width: 38px;
+  height: 26px;
+  line-height: 28px;
+  border-radius: 4px;
 }
-.down-btn {
+.red-btn {
+  cursor: pointer;
   background-color: #dd0051;
+  width: 38px;
+  height: 26px;
+  line-height: 28px;
+  border-radius: 4px;
 }
 
 .reset-btn {
@@ -363,6 +387,10 @@ input[type="radio"] {
   display: flex;
   cursor: pointer;
   background-color: #818181;
+}
+
+.control-wing {
+  margin-top: 8px;
 }
 
 .error {
